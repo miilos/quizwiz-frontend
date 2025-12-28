@@ -1,9 +1,9 @@
 function Home() {
-    return (
-        <>
-            this is the home page
-        </>
-    )
+  return (
+    <>
+       
+    </>
+  )
 }
 
 export default Home

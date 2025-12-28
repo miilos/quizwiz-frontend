@@ -1,0 +1,43 @@
+.nav {
+  padding: 1rem;
+  background-color: $color-primary--dark;
+
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &__text {
+      font-size: 3rem;
+      font-weight: bold;
+      color: $color-secondary--light;
+      margin-bottom: 0;
+    }
+  }
+
+  &__items {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  &__item {
+    color: $color-secondary--light;
+
+    &:hover {
+      color: $color-secondary--light;
+    }
+  }
+}
+
+.navbar-toggler {
+  border: none;
+  padding: 0;
+  
+  &:focus {
+    box-shadow: none;
+  }
+}
