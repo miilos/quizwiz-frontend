@@ -1,7 +1,11 @@
 .nav {
   padding: 1rem;
   background-color: $color-primary--dark;
-
+  box-shadow: $box-shadow--bottom;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 999;
   display: flex;
   align-items: center;
   gap: 2rem;

@@ -3,5 +3,8 @@
 @import 'bootstrap/scss/bootstrap.scss';
 
 @import './base';
+@import './utils';
 
 @import '../components/Navbar/navbar';
+@import '../components/Button/button';
+@import '../components/Home/home';

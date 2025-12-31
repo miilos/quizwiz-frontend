@@ -1,0 +1,23 @@
+.underlined {
+  &::before {
+    content: '';
+    width: 50%;
+    height: 0.3rem;
+    background-color: currentColor;
+    position: absolute;
+    bottom: 0.3rem;
+    left: -0.9rem;
+  }
+
+  &--primary {
+    &::before {
+      background-color: $color-primary--dark;
+    }
+  }
+
+  &--secondary {
+    &::before {
+      background-color: $color-secondary--light;
+    }
+  }
+}
