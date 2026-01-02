@@ -1,0 +1,16 @@
+.footer {
+  height: 15rem;
+  background-color: $color-primary--dark;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__img-container {
+    height: 100%;
+
+    &__img {
+      height: 100%;
+    }
+  }
+}

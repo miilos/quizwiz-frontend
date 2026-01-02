@@ -1,3 +1,4 @@
+import { Link } from "react-router"
 import Button from "../Button/Button"
 
 function Home() {
@@ -5,7 +6,9 @@ function Home() {
     <>
       <div className="splash splash--learn">
         <div className="splash__section splash__section__learn--left">
-
+          <div className="splash__section__learn--left__img-container">
+            <img src="/public/img/splash_1.png" alt="Illustration 1" className="splash__section__learn--left__img-container__img" />
+          </div>
         </div>
         <div className="splash__section splash__section__learn--right">
           <div className="splash__container">
@@ -15,9 +18,11 @@ function Home() {
             <p className="splash__section__learn--right__text">
               Excel in what you love with community-created quizzes, or make your own.
             </p>
-            <Button variant="primary">
-              Create your own quiz
-            </Button>
+            <Link to={'/'}>
+              <Button variant="primary">
+                Create your own quiz
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
@@ -31,13 +36,17 @@ function Home() {
             <p className="splash__section__ai--left__text">
               Get personalized learning reports from our AI learning assistant Merlin. Take a quiz now and get you first learning report.
             </p>
-            <Button variant="secondary">
-              Take a quiz now
-            </Button>
+            <Link to={'/'}>
+              <Button variant="secondary">
+                Take a quiz now
+              </Button>
+            </Link>
           </div>
         </div>
         <div className="splash__section splash__section__ai--right">
-            
+            <div className="splash__section__ai--right__img-container">
+            <img src="/public/img/splash_2.png" alt="Illustration 2" className="splash__section__ai--right__img-container__img" />
+          </div>
         </div>
       </div>
     </>
