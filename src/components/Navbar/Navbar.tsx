@@ -23,7 +23,7 @@ function Navigation() {
 
           <Navbar.Collapse>
             <Nav className="nav__items">
-              <Nav.Link href="/" className="nav__item">Browse Quizzes</Nav.Link>
+              <Nav.Link href="/quizzes" className="nav__item">Browse Quizzes</Nav.Link>
               <Nav.Link href="/" className="nav__item">Item 2</Nav.Link>
               <Nav.Link href="/" className="nav__item">Item 3</Nav.Link>
               <Nav.Link href="/" className="nav__item">Item 4</Nav.Link>

@@ -36,7 +36,7 @@ function Home() {
             <p className="splash__section__ai--left__text">
               Get personalized learning reports from our AI learning assistant Merlin. Take a quiz now and get you first learning report.
             </p>
-            <Link to={'/'}>
+            <Link to={'/quizzes'}>
               <Button variant="secondary">
                 Take a quiz now
               </Button>

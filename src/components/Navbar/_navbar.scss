@@ -1,7 +1,6 @@
 .nav {
   padding: 1rem;
   background-color: $color-primary--dark;
-  box-shadow: $box-shadow--bottom;
   position: sticky;
   top: 0;
   left: 0;
@@ -18,6 +17,7 @@
     &__text {
       font-size: 3rem;
       font-weight: bold;
+      font-style: italic;
       color: $color-secondary--light;
       margin-bottom: 0;
     }

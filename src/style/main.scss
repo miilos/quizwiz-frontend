@@ -5,7 +5,12 @@
 @import './base';
 @import './utils';
 
+@import '../components/Layout/layout';
 @import '../components/Navbar/navbar';
 @import '../components/Button/button';
 @import '../components/Home/home';
 @import '../components/Footer/footer';
+@import '../components/QuizList/quiz-list';
+@import '../components/Quiz/quiz';
+@import '../components/Tag/tag';
+@import '../components/SearchBar/searchbar';

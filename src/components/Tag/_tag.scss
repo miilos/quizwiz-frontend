@@ -1,0 +1,14 @@
+.tag {
+  padding: 0.4rem;
+  border: 1px solid $color-secondary--light;
+  border-radius: 0.5rem;
+  font-size: 1.4rem;
+
+  background-color: $color-secondary--light;
+
+  &__name {
+    //color: $color-secondary--light;
+    color: $color-primary--dark;
+    text-decoration: none;
+  }
+}

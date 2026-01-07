@@ -1,0 +1,12 @@
+.layout-container {
+  width: 50%;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  @include media-breakpoint-down(md) {
+    width: 100%;
+  }
+}
