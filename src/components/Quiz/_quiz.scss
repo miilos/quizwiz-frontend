@@ -8,14 +8,7 @@
   box-shadow: 0 0 2rem 1px $color-primary--dark;
   position: relative;
   overflow: hidden;
-  background:
-    linear-gradient(
-      to top right,
-      rgba($color-primary--dark, 0.7),
-      rgba($color-primary--medium, 0.7),
-      rgba($color-primary--light, 0.7)
-    ),
-    url('/public/img/noise.png');
+  background: $bg-noise;
   background-size: cover;
   cursor: pointer;
 
