@@ -4,6 +4,7 @@ import Navigation from "./Navbar/Navbar"
 import Footer from "./Footer/Footer"
 import QuizList from "./QuizList/QuizList"
 import Layout from "./Layout/Layout"
+import QuizDetails from "./QuizDetails/QuizDetails"
 
 function App() {
   return (
@@ -12,8 +13,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
 
-        <Route element={<Layout />}>
-          <Route path="/quizzes" element={<QuizList />} />
+        <Route path="/quizzes" element={<Layout />}>
+          <Route index element={<QuizList />} />
+          <Route path=":id" element={<QuizDetails />} />
         </Route>
       </Routes>
       <Footer />

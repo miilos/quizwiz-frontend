@@ -2,15 +2,15 @@ import { gql } from "@apollo/client";
 import { useLazyQuery, useQuery } from "@apollo/client/react";
 import { Spinner } from "react-bootstrap";
 import Quiz from "../Quiz/Quiz";
-import type { Quiz as QuizType } from "../../types";
+import type { QuizOverview } from "../../types";
 import SearchBar from "../SearchBar/SearchBar";
 
 interface QuizResult {
-  quizzes: [QuizType]
+  quizzes: [QuizOverview]
 }
 
 interface QuizSearchResult {
-  searchQuizzes: [QuizType]
+  searchQuizzes: [QuizOverview]
 }
 
 interface SearchQuizInput {

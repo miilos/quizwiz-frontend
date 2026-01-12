@@ -1,12 +1,12 @@
 import { Link, useNavigate } from "react-router"
-import type { Quiz as QuizType, Tag as TagType } from "../../types"
+import type { QuizOverview, Tag as TagType } from "../../types"
 import Tag from "../Tag/Tag"
 import { BsFillPatchQuestionFill } from "react-icons/bs"
 import type React from "react"
 
 
 interface QuizProps {
-  quiz: QuizType
+  quiz: QuizOverview
 }
 
 
@@ -18,7 +18,7 @@ function Quiz({ quiz }: QuizProps) {
       return
     }
 
-    navigate('/')
+    navigate('/quizzes/' + quiz.id)
   }
 
   return (
@@ -56,7 +56,7 @@ function Quiz({ quiz }: QuizProps) {
                 )
               }
             </div>
-          } 
+          }
         </div>
       </div>
     </>

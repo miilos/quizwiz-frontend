@@ -1,7 +1,8 @@
-$color-primary--dark: #3F2D77;
+$color-primary--dark: #322264;
 $color-primary--medium: #5D408C;
 $color-primary--light: #7173B5;
 $color-secondary--dark: #F5C670;
+$color-secondary--medium: #fae2b5;
 $color-secondary--light: #f7f2ea;
 
 $font--primary: "Merriweather", serif;
@@ -11,6 +12,7 @@ $box-shadow--bottom: 0 0.1rem 1.3rem 0.1rem #000;
 $bg-noise: 
       linear-gradient(
         to top right,
+        rgba($color-primary--dark, 0.7),
         rgba($color-primary--dark, 0.7),
         rgba($color-primary--medium, 0.7),
         rgba($color-primary--light, 0.7)

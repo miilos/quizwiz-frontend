@@ -1,0 +1,31 @@
+.start-quiz-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.start-quiz-btn,
+.end-quiz-btn {
+  font-size: 1.7rem;
+  font-weight: bold;
+  padding: 1.8rem 2.1rem;
+  border-radius: 3.5rem;
+  border: none;
+  background: $color-primary--dark;
+  color: $color-secondary--light;
+  transition: 0.4s;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background-color: $color-primary--medium;
+  }
+}
+
+.end-quiz-btn {
+  width: 100%;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+}
