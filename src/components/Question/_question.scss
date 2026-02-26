@@ -5,12 +5,9 @@
   background: $bg-noise;
   color: $color-secondary--light;
 
-  &__text {
-    margin-bottom: 0;
-    font-weight: bold;
-    font-size: 2.2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid $color-secondary--light;
+  &__header {
+    display: flex;
+    justify-content: space-between;
 
     &__number {
       padding: 0.2rem 0.5rem;
@@ -21,6 +18,18 @@
       margin-right: 0.5rem;
       width: fit-content;
     }
+
+    &__icon {
+      font-size: 2rem;
+    }
+  }
+
+  &__text {
+    margin-bottom: 0;
+    font-weight: bold;
+    font-size: 2.2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid $color-secondary--light;
   }
 
   &__answers {
@@ -49,6 +58,10 @@
 
       &--selected {
         background-color: $color-secondary--dark;
+
+        &:hover {
+          background-color: $color-secondary--dark;
+        }
       }
     }
   }

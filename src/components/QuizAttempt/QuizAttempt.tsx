@@ -1,31 +1,20 @@
 import { useRef, useState } from "react"
-import type { QuizDetails } from "../../types"
+import type { AttemptRef, QuizDetails } from "../../types"
 import Button from "../Button/Button"
 import Question from "../Question/Question"
+import { Spinner } from "react-bootstrap"
 
 interface QuizAttemptProps {
   quiz: QuizDetails
+  onEndQuiz: (attempt: AttemptRef) => void
+  submitLoading: boolean
 }
 
-interface Answer {
-  questionId: number;
-  answer: number[];
-}
-
-interface AttemptRef {
-  quizId: number;
-  userId: number;
-  answers: Answer[];
-  attemptedAt: string|null;
-}
-
-function QuizAttempt({ quiz }: QuizAttemptProps) {
+function QuizAttempt({ quiz, onEndQuiz, submitLoading }: QuizAttemptProps) {
   const [showFinishQuizBtn, setShowFinishQuizBtn] = useState(false)
   const attempt = useRef<AttemptRef>({
     quizId: quiz.id,
-    userId: 1,
-    answers: [],
-    attemptedAt: null
+    answers: []
   })
 
   const updateAttemptData = (questionId: number, answer: number[]) => {
@@ -34,12 +23,12 @@ function QuizAttempt({ quiz }: QuizAttemptProps) {
     )
 
     if (answerIndex !== -1) {
-      attempt.current.answers[answerIndex].answer = answer
+      attempt.current.answers[answerIndex].answers = answer
     }
     else {
       attempt.current.answers.push({
         questionId,
-        answer
+        answers: answer
       })
     }
   }
@@ -57,7 +46,7 @@ function QuizAttempt({ quiz }: QuizAttemptProps) {
         return
       }
 
-      if (questionAnswer.answer.length !== question.correctAnswer.length) {
+      if (questionAnswer.answers.length !== question.correctAnswer.length) {
         isFilledOut = false
       }
     })
@@ -91,8 +80,7 @@ function QuizAttempt({ quiz }: QuizAttemptProps) {
   }
 
   const handleEndQuizClick = () => {
-    attempt.current.attemptedAt = new Date().toISOString()
-    console.log(attempt.current)
+    onEndQuiz(attempt.current)
   }
 
   return (
@@ -114,7 +102,14 @@ function QuizAttempt({ quiz }: QuizAttemptProps) {
       {
         showFinishQuizBtn &&
         <Button variant='primary' extraClasses='end-quiz-btn' onClick={handleEndQuizClick}>
-          Finish quiz
+          {
+            submitLoading ? 
+              <>
+                <span>Loading...</span>
+                <Spinner animation="border" role="status" className="loader loader--secondary" />
+              </> :
+              <span>Finish quiz</span>
+            }
         </Button>
       }
     </>

@@ -2,6 +2,10 @@
   padding: 0.9rem 1.2rem;
   border-radius: 2rem;
   font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
 
   &--primary {
     background-color: $color-primary--dark;

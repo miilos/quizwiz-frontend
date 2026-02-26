@@ -1,5 +1,7 @@
 import { useState } from "react"
 import type { Question as QuestionType } from "../../types"
+import { BsFillQuestionSquareFill } from "react-icons/bs";
+import { MdQuiz } from "react-icons/md";
 
 interface QuestionProps {
   question: QuestionType;
@@ -41,10 +43,14 @@ function Question({ question, onAnswerSelect, onQuestionComplete }: QuestionProp
   return (
     <>
       <div className={`question question-${question.position}`}>
-        <h3 className="question__text">
-          <p className="question__text__number">
+        <div className="question__header">
+          <p className="question__header__number">
             {question.position}.
           </p>
+          { question.type === 'one' && <BsFillQuestionSquareFill className="question__header__icon" /> }
+          { question.type === 'multiple' && <MdQuiz className="question__header__icon" /> }
+        </div>
+        <h3 className="question__text">
           { question.text }
         </h3>
         <div className="question__answers">

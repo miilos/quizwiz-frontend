@@ -35,3 +35,35 @@ export interface QuizOverview {
 export interface QuizDetails extends Omit<QuizOverview, 'questions'> {
   questions: [Question]
 }
+
+interface Answer {
+  questionId: number;
+  answers: number[];
+}
+
+export interface AttemptRef {
+  quizId: number;
+  answers: Answer[];
+}
+
+export interface User {
+  id: number;
+  email: string;
+  username: string;
+}
+
+interface QuizAnswer {
+  questionId: number;
+  answers: [number];
+  status: string
+}
+
+export interface QuizAttempt {
+  id: number;
+  quiz: QuizOverview;
+  user: User;
+  answers: [QuizAnswer];
+  correctAnswerCount: number;
+  incorrectAnswerCount: number;
+  percentageScore: number;
+}

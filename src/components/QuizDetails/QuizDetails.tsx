@@ -1,16 +1,21 @@
 import { gql } from "@apollo/client"
-import { useQuery } from "@apollo/client/react"
+import { useMutation, useQuery } from "@apollo/client/react"
 import { Spinner } from "react-bootstrap"
 import { Link, useParams } from "react-router"
-import type { QuizDetails as QuizDetailsType, Tag as TagType } from "../../types"
+import type { AttemptRef, QuizDetails as QuizDetailsType, QuizAttempt as QuizAttemptType, Tag as TagType } from "../../types"
 import { BsFillPatchQuestionFill } from "react-icons/bs"
 import Tag from "../Tag/Tag"
 import { useState } from "react"
 import StartQuizButton from "../StartQuizButton/StartQuizButton"
 import QuizAttempt from "../QuizAttempt/QuizAttempt"
+import QuizResults from "../QuizResults/QuizResults"
 
 interface GetQuizResult {
   quiz: QuizDetailsType;
+}
+
+interface CreateQuizAttemptResult {
+  createAttempt: QuizAttemptType;
 }
 
 type QuizAttemptState = 'notStarted' | 'started' | 'finished'
@@ -44,12 +49,50 @@ const GET_QUIZ = gql`
   }
 `
 
+const CREATE_ATTEMPT = gql`
+  mutation CreateAttempt($attempt: QuizAttemptInput) {
+    createAttempt(attempt: $attempt) {
+      id
+      quiz {
+        id
+        title
+      }
+      user {
+        id
+        username
+      }
+      answers {
+        questionId
+        answers
+        status
+      }
+      correctAnswerCount
+      incorrectAnswerCount
+      percentageScore
+      attemptedAt
+    }
+  }
+`
+
 function QuizDetails() {
   let { id } = useParams()
   const [attemptState, setAttemptState] = useState<QuizAttemptState>('notStarted')
+  const [
+    createAttemptMutation,
+    {
+      data: createAttemptData,
+      loading: createAttemptLoading,
+      error: createAttemptError
+    }
+  ] = useMutation<CreateQuizAttemptResult>(CREATE_ATTEMPT)
 
   const handleStartBtnClick = () => {
     setAttemptState('started')
+  }
+
+  const handleEndQuizClick = (attempt: AttemptRef) => {
+    createAttemptMutation({ variables: { attempt } })
+    setAttemptState('finished')
   }
 
   if (!id) {
@@ -120,7 +163,18 @@ function QuizDetails() {
       }
 
       {
-        attemptState === 'started' && <QuizAttempt quiz={quiz} />
+        attemptState === 'started' &&
+          <QuizAttempt
+            quiz={quiz}
+            onEndQuiz={handleEndQuizClick}
+            submitLoading={createAttemptLoading}
+          />
+      }
+
+      {
+        attemptState === 'finished' &&
+        createAttemptData &&
+          <QuizResults result={createAttemptData.createAttempt} />
       }
     </>
   )

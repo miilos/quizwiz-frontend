@@ -1,0 +1,45 @@
+.results {
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    & > * {
+      margin-bottom: 0;
+    }
+
+    &__p {
+      color: $color-primary--dark;
+
+      &--score-message {
+        margin-top: 0.5rem;
+      }
+    }
+
+    &__correct-count {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+  }
+
+  &__percentage {
+    padding: 2rem 1.4rem;
+    background: $bg-noise;
+    border-radius: 0.5rem;
+
+    &__text {
+      font-size: 3.5rem;
+      font-weight: bold;
+      color: $color-secondary--light;
+    }
+  }
+}

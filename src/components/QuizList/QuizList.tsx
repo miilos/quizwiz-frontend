@@ -99,12 +99,8 @@ function QuizList() {
 
         <div className="quiz-list__quizzes">
           { 
-            quizData?.length ? (
-              quizData?.map(
-                quiz => <Quiz quiz={quiz} key={quiz.id} />
-              )
-            ) : (
-              <p>There are no search results for these keywords :(</p>
+            quizData?.map(
+              quiz => <Quiz quiz={quiz} key={quiz.id} />
             )
           }
         </div>
