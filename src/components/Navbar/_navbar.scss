@@ -35,6 +35,29 @@
       color: $color-secondary--light;
     }
   }
+
+  &__account-actions {
+    padding-right: 2rem;
+    display: flex;
+    justify-content: flex-end;
+
+    &-container {
+      display: flex;
+      gap: 1rem;  
+    }
+
+    &__signup {
+      display: inline-block;
+      padding: 0.3rem 1rem !important;
+      border-radius: 2rem;
+      background-color: $color-secondary--light;
+      color: $color-primary--dark;
+
+      &:hover {
+        color: $color-primary--dark;
+      }
+    }
+  }
 }
 
 .navbar-toggler {

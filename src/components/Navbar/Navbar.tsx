@@ -29,7 +29,14 @@ function Navigation() {
               <Nav.Link href="/" className="nav__item">Item 4</Nav.Link>
             </Nav>
           </Navbar.Collapse>
-      </Navbar> 
+
+          <Navbar.Collapse className="nav__account-actions">
+            <Nav className="nav__account-actions-container">
+              <Nav.Link href="/signup" className="nav__item nav__account-actions__signup">Sign up</Nav.Link>
+              <Nav.Link href="/login" className="nav__item nav__account-actions__login">Log in</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+      </Navbar>
     </>
   )
 }

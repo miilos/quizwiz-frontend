@@ -1,0 +1,70 @@
+.login {
+  margin-top: 20rem;
+  background: $bg-noise;
+  padding: 3rem 5rem;
+  border-radius: 2rem;
+  color: $color-secondary--light;
+  border: 1px solid $color-primary--dark;
+  box-shadow: 0 0.1rem 1.3rem 0.1rem $color-primary--dark;
+
+  &__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__title {
+      font-style: italic;
+    }
+  }
+
+  &__fields {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    &__group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.2rem;
+
+      &__label {
+        font-size: 1.2rem;
+      }
+
+      &__input {
+        border: none;
+        border-bottom: 1px solid $color-secondary--light;
+        background-color: transparent;
+        color: $color-secondary--light;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    &__btn {
+      margin-top: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+  }
+
+  &__loader {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  &__error {
+    background-color: $color-error--light;
+    color: $color-error--dark;
+    font-size: 1.4rem;
+    padding: 0.5rem 1.5rem;
+    border-radius: 2rem;
+    border: 1px solid $color-error--dark;
+  }
+}
