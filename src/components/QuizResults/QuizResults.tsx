@@ -27,6 +27,8 @@ function QuizResults({ result }: QuizResultProps) {
   return (
     <>
       <div className="results">
+        <h1 className="results__header">Your result is:</h1>
+
         <div className="results__percentage">
           <h1 className="results__percentage__text">
             { result.percentageScore }%
@@ -45,7 +47,7 @@ function QuizResults({ result }: QuizResultProps) {
         </div>
 
         <Link to={'/quizzes'}>
-          <Button variant="primary">
+          <Button variant="secondary">
             Back to quizzes
           </Button>
         </Link>

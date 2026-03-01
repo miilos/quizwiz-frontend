@@ -52,6 +52,12 @@ export interface User {
   username: string;
 }
 
+export interface UserState {
+  id: number|null;
+  email: string|null;
+  username: string|null;
+}
+
 interface QuizAnswer {
   questionId: number;
   answers: [number];

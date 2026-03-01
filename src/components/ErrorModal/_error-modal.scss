@@ -1,0 +1,44 @@
+.error {
+  width: 50rem;
+  padding: 2rem;
+  background-color: $color-error--light;
+  color: $color-error--dark;
+  border: 2px solid $color-error--dark;
+  border-radius: 2rem;
+  box-shadow: 0 0 2rem 1px $color-error--dark;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  z-index: 99;
+
+  &__left {
+    display: flex;
+    align-items: center;
+
+    &__icon {
+      width: 3rem;
+      height: 3rem;
+    }
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+    
+    &__message {
+      margin-bottom: 0;
+    }
+  }
+
+  &__close {
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    cursor: pointer;
+  }
+}

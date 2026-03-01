@@ -58,6 +58,19 @@
       }
     }
   }
+
+  &__profile {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    background-color: $color-secondary--light;
+    color: $color-primary--dark;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
 }
 
 .navbar-toggler {

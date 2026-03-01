@@ -1,13 +1,22 @@
 .results {
   width: 100%;
   padding: 2rem;
+  background: $bg-noise;
+  background-size: cover;
+  border-radius: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 2rem;
 
+  &__header {
+    color: $color-secondary--light;
+    font-size: 2.5rem;
+  }
+
   &__text {
+    color: $color-secondary--light;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,7 +27,7 @@
     }
 
     &__p {
-      color: $color-primary--dark;
+      color: $color-secondary--light;
 
       &--score-message {
         margin-top: 0.5rem;
@@ -33,13 +42,14 @@
 
   &__percentage {
     padding: 2rem 1.4rem;
-    background: $bg-noise;
+    background: $color-secondary--light;
     border-radius: 0.5rem;
+    margin-bottom: 0;
 
     &__text {
       font-size: 3.5rem;
       font-weight: bold;
-      color: $color-secondary--light;
+      color: $color-primary--dark;
     }
   }
 }

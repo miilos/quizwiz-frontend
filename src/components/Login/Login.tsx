@@ -3,6 +3,9 @@ import Button from "../Button/Button"
 import { BACKEND_BASE_URI } from "../../config"
 import { Spinner } from "react-bootstrap"
 import { useNavigate } from "react-router"
+import { useAppDispatch } from "../../app/hooks"
+import { setUser } from "../../features/userSlice"
+import FormError from "../FormError/FormError"
 
 function Login() {
   const [email, setEmail] = useState('')
@@ -12,7 +15,9 @@ function Login() {
 
   const navigate = useNavigate()
 
-  const handleLogInClick = async () => {
+  const dispatch = useAppDispatch()
+
+  const handleLogIn = async () => {
     setIsLoading(true)
 
     const res = await fetch(
@@ -35,10 +40,14 @@ function Login() {
 
     if (!res.ok) {
       setErrorMessage(json.message)
+      return
     }
 
     const token = json.data.token
     localStorage.setItem('token', token)
+
+    dispatch(setUser(json.data.user))
+
     navigate('/quizzes')
   }
 
@@ -59,9 +68,9 @@ function Login() {
         <div className="login__fields">
           {
             errorMessage &&
-              <div className="login__error">
+              <FormError>
                 { errorMessage }
-              </div>
+              </FormError>
           }
 
           <div className="login__fields__group">
@@ -83,13 +92,14 @@ function Login() {
               id="password" 
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleLogIn()}
             />
           </div>
 
           <Button
             variant="secondary"
             extraClasses="login__fields__btn"
-            onClick={handleLogInClick}
+            onClick={handleLogIn}
           >
             {
               isLoading &&

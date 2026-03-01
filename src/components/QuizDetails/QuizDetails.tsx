@@ -9,6 +9,8 @@ import { useState } from "react"
 import StartQuizButton from "../StartQuizButton/StartQuizButton"
 import QuizAttempt from "../QuizAttempt/QuizAttempt"
 import QuizResults from "../QuizResults/QuizResults"
+import ErrorHandler from "../../util/ErrorHandler"
+import ErrorModal from "../ErrorModal/ErrorModal"
 
 interface GetQuizResult {
   quiz: QuizDetailsType;
@@ -75,8 +77,11 @@ const CREATE_ATTEMPT = gql`
 `
 
 function QuizDetails() {
-  let { id } = useParams()
   const [attemptState, setAttemptState] = useState<QuizAttemptState>('notStarted')
+  const [showNotLoggedInError, setShowNotLoggedInError] = useState(false)
+
+  let { id } = useParams()
+
   const [
     createAttemptMutation,
     {
@@ -84,9 +89,23 @@ function QuizDetails() {
       loading: createAttemptLoading,
       error: createAttemptError
     }
-  ] = useMutation<CreateQuizAttemptResult>(CREATE_ATTEMPT)
+  ] = useMutation<CreateQuizAttemptResult>(
+    CREATE_ATTEMPT, {
+      context: {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        }
+      }
+    })
 
   const handleStartBtnClick = () => {
+    const token = localStorage.getItem('token')
+
+    if (!token) {
+      setShowNotLoggedInError(true)
+      return
+    }
+
     setAttemptState('started')
   }
 
@@ -110,7 +129,7 @@ function QuizDetails() {
   }
 
   if (error) {
-    return <div className="error"></div>
+    return <ErrorModal message={error.message} />
   }
 
   const quiz = data?.quiz
@@ -175,6 +194,19 @@ function QuizDetails() {
         attemptState === 'finished' &&
         createAttemptData &&
           <QuizResults result={createAttemptData.createAttempt} />
+      }
+
+      {
+        showNotLoggedInError &&
+          <ErrorModal
+            message="You need to log in first."
+            onClose={() => setShowNotLoggedInError(false)}  
+          />
+      }
+
+      {
+        createAttemptError &&
+          <ErrorModal message={createAttemptError.message} />
       }
     </>
   )

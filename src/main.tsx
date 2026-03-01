@@ -7,6 +7,8 @@ import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { ApolloProvider } from "@apollo/client/react";
 import { HttpLink } from '@apollo/client'
 import { BACKEND_BASE_URI } from './config'
+import { Provider } from 'react-redux'
+import { store } from './app/store.ts'
 
 const client = new ApolloClient({
   link: new HttpLink({uri: BACKEND_BASE_URI + '/graphql/'}),
@@ -15,10 +17,12 @@ const client = new ApolloClient({
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ApolloProvider client={client}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </ApolloProvider>
+    <Provider store={store}>
+      <ApolloProvider client={client}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ApolloProvider>
+    </Provider>
   </StrictMode>
 )

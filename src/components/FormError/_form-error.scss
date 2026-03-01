@@ -1,0 +1,8 @@
+.form-error {
+  background-color: $color-error--light;
+  color: $color-error--dark;
+  font-size: 1.4rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: 2rem;
+  border: 2px solid $color-error--dark;
+}
