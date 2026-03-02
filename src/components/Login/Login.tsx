@@ -53,19 +53,19 @@ function Login() {
 
   return (
     <>
-      <div className="login">
-        <div className="login__header">
+      <div className="form">
+        <div className="form__header">
           <img
             src="/public/img/logo.png"
             alt="QuizWiz logo"
-            className="login__header__img"
+            className="form__header__img"
             width={70}
             height={70}
           />
-          <h1 className="login__header__title">Log in</h1>
+          <h1 className="form__header__title">Log in</h1>
         </div>
 
-        <div className="login__fields">
+        <div className="form__fields">
           {
             errorMessage &&
               <FormError>
@@ -73,22 +73,22 @@ function Login() {
               </FormError>
           }
 
-          <div className="login__fields__group">
-            <label htmlFor="email" className="login__fields__group__label">Email</label>
+          <div className="form__fields__group">
+            <label htmlFor="email" className="form__fields__group__label">Email</label>
             <input
               type="text"
-              className="login__fields__group__input"
+              className="form__fields__group__input"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}  
             />
           </div>
 
-          <div className="login__fields__group">
-            <label htmlFor="password" className="login__fields__group__label">Password</label>
+          <div className="form__fields__group">
+            <label htmlFor="password" className="form__fields__group__label">Password</label>
             <input
               type="password"
-              className="login__fields__group__input"
+              className="form__fields__group__input"
               id="password" 
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -98,12 +98,12 @@ function Login() {
 
           <Button
             variant="secondary"
-            extraClasses="login__fields__btn"
+            extraClasses="form__fields__btn"
             onClick={handleLogIn}
           >
             {
               isLoading &&
-                <Spinner animation="border" role="status" className="loader login__loader loader--primary" />
+                <Spinner animation="border" role="status" className="loader form__loader loader--primary" />
             }
             Log in
           </Button>

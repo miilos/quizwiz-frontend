@@ -41,6 +41,10 @@
     display: flex;
     justify-content: flex-end;
 
+    @include media-breakpoint-down(md) {
+      justify-content: flex-start;
+    }
+
     &-container {
       display: flex;
       gap: 1rem;  
