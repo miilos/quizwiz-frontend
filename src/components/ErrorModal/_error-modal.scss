@@ -13,6 +13,10 @@
   display: flex;
   z-index: 99;
 
+  @include media-breakpoint-down(md) {
+    width: 90%;
+  }
+
   &__left {
     display: flex;
     align-items: center;

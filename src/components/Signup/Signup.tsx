@@ -66,7 +66,7 @@ function Signup() {
     }
 
     localStorage.setItem('token', json.token)
-    dispatch(setUser(json.data.user))
+    dispatch(setUser(json.data.uuser))
     navigate('/quizzes')
   }
 

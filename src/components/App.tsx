@@ -7,6 +7,8 @@ import Layout from "./Layout/Layout"
 import QuizDetails from "./QuizDetails/QuizDetails"
 import Login from "./Login/Login"
 import Signup from "./Signup/Signup"
+import RequireAuth from "./RequireAuth/RequireAuth"
+import CreateQuiz from "./CreateQuiz/CreateQuiz"
 
 function App() {
   return (
@@ -23,6 +25,9 @@ function App() {
         <Route path="/quizzes" element={<Layout />}>
           <Route index element={<QuizList />} />
           <Route path=":id" element={<QuizDetails />} />
+          <Route element={<RequireAuth />}>
+            <Route path="create" element={<CreateQuiz />} />
+          </Route>
         </Route>
       </Routes>
       <Footer />
