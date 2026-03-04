@@ -18,7 +18,7 @@ function Home() {
             <p className="splash__section__learn--right__text">
               Excel in what you love with community-created quizzes, or make your own.
             </p>
-            <Link to={'/'}>
+            <Link to={'/quizzes/create'}>
               <Button variant="primary">
                 Create your own quiz
               </Button>

@@ -2,13 +2,16 @@ import { useRef, useState } from "react"
 import type React from "react"
 import { useMutation } from "@apollo/client/react"
 import { useNavigate } from "react-router"
-import { BsPlusLg } from "react-icons/bs"
+import { BsPlusLg, BsStars } from "react-icons/bs"
 import { IoMdClose } from "react-icons/io"
 import { Spinner } from "react-bootstrap"
 import Button from "../Button/Button"
 import ErrorModal from "../ErrorModal/ErrorModal"
+import FormError from "../FormError/FormError"
+import Modal from "../Modal/Modal"
 import CreateQuizQuestion, { type QuestionDraft } from "./CreateQuizQuestion"
 import { gql } from "@apollo/client"
+import { BACKEND_BASE_URI } from "../../config"
 
 const CREATE_QUIZ = gql`
   mutation CreateQuiz($quiz: QuizInput!) {
@@ -29,6 +32,11 @@ function CreateQuiz() {
   const [questions, setQuestions] = useState<QuestionDraft[]>([])
   const [furtherReading, setFurtherReading] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
+
+  const [isGenerateModalOpen, setIsGenerateModalOpen] = useState(false)
+  const [generatePrompt, setGeneratePrompt] = useState('')
+  const [generateLoading, setGenerateLoading] = useState(false)
+  const [generateError, setGenerateError] = useState('')
 
   const idCounter = useRef(0)
   const nextId = () => ++idCounter.current
@@ -94,6 +102,47 @@ function CreateQuiz() {
     setQuestions(prev => prev.filter(q => q.id !== id))
   }
 
+  const handleGenerateQuestion = async () => {
+    setGenerateLoading(true)
+    setGenerateError('')
+
+    const res = await fetch(
+      BACKEND_BASE_URI + '/api/prompt/questions',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify({ prompt: generatePrompt })
+      }
+    )
+
+    const json = await res.json()
+
+    setGenerateLoading(false)
+
+    if (!res.ok) {
+      setGenerateError(json.message)
+      return
+    }
+
+    const { question } = json.data
+
+    setQuestions(prev => [...prev, {
+      id: nextId(),
+      text: question.question,
+      options: question.answers,
+      correctAnswers: [question.correctAnswer],
+      type: 'one',
+      explanation: ''
+    }])
+
+    setIsGenerateModalOpen(false)
+    setGeneratePrompt('')
+    setGenerateError('')
+  }
+
   const handleCreateQuiz = async () => {
     try {
       const result = await createQuizMutation({
@@ -120,10 +169,6 @@ function CreateQuiz() {
     }
   }
 
-  const handlePrintQuiz = async () => {
-
-  }
-
   return (
     <div className="create-quiz">
       {
@@ -132,6 +177,41 @@ function CreateQuiz() {
             message={errorMessage}
             onClose={() => setErrorMessage('')}
           />
+      }
+
+      {
+        isGenerateModalOpen &&
+          <Modal
+            title="Generate question with AI"
+            onClose={() => setIsGenerateModalOpen(false)}
+          >
+            <div className="generate-modal">
+              <p className="generate-modal__description">
+                Just describe what you want the question to be about and our AI takes care of the rest, or be as specific as you want!
+              </p>
+              <textarea
+                className="generate-modal__textarea"
+                placeholder="Describe the question..."
+                value={generatePrompt}
+                onChange={(e) => setGeneratePrompt(e.target.value)}
+              />
+              {
+                generateError &&
+                  <FormError>{ generateError }</FormError>
+              }
+              <Button
+                variant="secondary"
+                extraClasses="generate-modal__submit-btn"
+                onClick={handleGenerateQuestion}
+              >
+                {
+                  generateLoading &&
+                    <Spinner animation="border" role="status" className="loader form__loader loader--primary" />
+                }
+                Generate
+              </Button>
+            </div>
+          </Modal>
       }
 
       <div className="create-quiz__header">
@@ -200,6 +280,11 @@ function CreateQuiz() {
         <button className="create-quiz__questions__add-btn" onClick={handleAddQuestion}>
           <BsPlusLg className="create-quiz__questions__add-btn__icon" />
           Add question
+        </button>
+
+        <button className="create-quiz__questions__generate-btn" onClick={() => setIsGenerateModalOpen(true)}>
+          <BsStars className="create-quiz__questions__generate-btn__icon" />
+          Generate with AI
         </button>
       </div>
 
