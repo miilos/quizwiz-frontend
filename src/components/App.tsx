@@ -9,6 +9,7 @@ import Login from "./Login/Login"
 import Signup from "./Signup/Signup"
 import RequireAuth from "./RequireAuth/RequireAuth"
 import CreateQuiz from "./CreateQuiz/CreateQuiz"
+import Profile from "./Profile/Profile"
 
 function App() {
   return (
@@ -28,6 +29,10 @@ function App() {
           <Route element={<RequireAuth />}>
             <Route path="create" element={<CreateQuiz />} />
           </Route>
+        </Route>
+
+        <Route element={<RequireAuth />}>
+          <Route path="/profile" element={<Profile />} />
         </Route>
       </Routes>
       <Footer />

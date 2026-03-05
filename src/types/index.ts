@@ -73,3 +73,35 @@ export interface QuizAttempt {
   incorrectAnswerCount: number;
   percentageScore: number;
 }
+
+interface ProfileQuizAnswer {
+  questionId: number;
+  answers: number[];
+  status: string;
+}
+
+export interface ProfileQuizAttempt {
+  id: number;
+  answers: ProfileQuizAnswer[];
+  attemptedAt: string;
+  correctAnswerCount: number;
+  incorrectAnswerCount: number;
+  percentageScore: number;
+}
+
+export interface ProfileQuiz {
+  id: number;
+  title: string;
+  description?: string;
+  createdAt: string;
+  questions: { id: number }[];
+  tags: any[][];
+}
+
+export interface ProfileUser {
+  id: number;
+  email: string;
+  username: string;
+  quizzes: ProfileQuiz[];
+  quizAttempts: ProfileQuizAttempt[];
+}

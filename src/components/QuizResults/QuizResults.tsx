@@ -1,12 +1,14 @@
 import { Link } from "react-router";
-import type { QuizAttempt } from "../../types"
+import type { QuizAttempt, QuizDetails } from "../../types"
 import Button from "../Button/Button";
+import { BsCheckLg } from "react-icons/bs";
 
 interface QuizResultProps {
   result: QuizAttempt;
+  quiz: QuizDetails;
 }
 
-function QuizResults({ result }: QuizResultProps) {
+function QuizResults({ result, quiz }: QuizResultProps) {
   const mapPercentageScoreToMessage = (percentageScore: number): string => {
     switch (true) {
       case percentageScore <= 10:
@@ -23,6 +25,10 @@ function QuizResults({ result }: QuizResultProps) {
         return 'You did good! Keep going!'
     }
   }
+
+  const answersByQuestionId = new Map(
+    result.answers.map(a => [a.questionId, a])
+  )
 
   return (
     <>
@@ -51,6 +57,58 @@ function QuizResults({ result }: QuizResultProps) {
             Back to quizzes
           </Button>
         </Link>
+      </div>
+
+      <div className="results-review">
+        {quiz.questions.map((question) => {
+          const answer = answersByQuestionId.get(question.id)
+          const isCorrect = answer?.status === 'correct'
+          const userAnswers = (answer?.answers ?? []) as number[]
+
+          return (
+            <div
+              key={question.id}
+              className={`results-review__question results-review__question--${isCorrect ? 'correct' : 'incorrect'}`}
+            >
+              <div className="results-review__header">
+                <div className="results-review__header__number">
+                  {question.position}.
+                </div>
+              </div>
+
+              <h3 className="results-review__text">
+                {question.text}
+              </h3>
+
+              <div className="results-review__options">
+                {question.options.map((option, optIdx) => {
+                  const isAnswerCorrect = (question.correctAnswer as number[]).includes(optIdx)
+                  const isSelected = userAnswers.includes(optIdx)
+
+                  const classes = [
+                    'results-review__option',
+                    isAnswerCorrect ? 'results-review__option--answer' : 'results-review__option--answer-wrong',
+                    isSelected ? 'results-review__option--selected' : ''
+                  ].filter(Boolean).join(' ')
+
+                  return (
+                    <div className={classes} key={optIdx}>
+                      { isAnswerCorrect && <BsCheckLg className="results-review__option__icon" /> }
+                      {option}
+                    </div>
+                  )
+                })}
+              </div>
+
+              {
+                question.explanation &&
+                  <p className="results-review__explanation">
+                    {question.explanation}
+                  </p>
+              }
+            </div>
+          )
+        })}
       </div>
     </>
   )

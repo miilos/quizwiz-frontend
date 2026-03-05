@@ -193,7 +193,7 @@ function QuizDetails() {
       {
         attemptState === 'finished' &&
         createAttemptData &&
-          <QuizResults result={createAttemptData.createAttempt} />
+          <QuizResults result={createAttemptData.createAttempt} quiz={quiz} />
       }
 
       {

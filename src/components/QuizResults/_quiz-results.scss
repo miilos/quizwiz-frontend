@@ -53,3 +53,122 @@
     }
   }
 }
+
+.results-review {
+  width: 100%;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  &__question {
+    width: 100%;
+    padding: 2rem;
+    border-radius: 2.5rem;
+    background-size: cover;
+    color: $color-secondary--light;
+
+    &--correct {
+      background:
+        linear-gradient(
+          to top right,
+          rgba($color-success--medium, 0.9),
+          rgba($color-success--medium, 0.9),
+          rgba($color-success--light, 0.75)
+        ),
+        url('/public/img/noise.png');
+
+      .results-review__option {
+        &--answer {
+          background-color: $color-success--light;
+          color: $color-success--dark;
+        }
+
+        &--answer-wrong {
+          background-color: $color-success--dark;
+          color: $color-success--light;
+        }
+      }
+    }
+
+    &--incorrect {
+      background:
+        linear-gradient(
+          to top right,
+          rgba($color-error--medium, 0.9),
+          rgba($color-error--medium, 0.9),
+          rgba($color-error--light, 0.75)
+        ),
+        url('/public/img/noise.png');
+
+      .results-review__option {
+        &--answer {
+          background-color: $color-error--light;
+          color: $color-error--dark;
+        }
+
+        &--answer-wrong {
+          background-color: $color-error--dark;
+          color: $color-error--light;
+        }
+      }
+    }
+  }
+
+  &__header {
+    display: flex;
+    margin-bottom: 1.5rem;
+
+    &__number {
+      padding: 0.2rem 0.5rem;
+      font-size: 2rem;
+      background-color: $color-secondary--light;
+      color: $color-primary--dark;
+      border-radius: 0.5rem;
+      width: fit-content;
+    }
+  }
+
+  &__text {
+    font-weight: bold;
+    font-size: 2.2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba($color-secondary--light, 0.4);
+    margin-bottom: 2rem;
+  }
+
+  &__options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__option {
+    font-size: 1.5rem;
+    padding: 1rem;
+    border-radius: 2rem;
+    border: 4px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+
+    &__icon {
+      flex-shrink: 0;
+      font-size: 1.8rem;
+    }
+
+    &--selected {
+      border-color: $color-secondary--dark;
+    }
+  }
+
+  &__explanation {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba($color-secondary--light, 0.4);
+    font-size: 1.4rem;
+    font-style: italic;
+    margin-bottom: 0;
+  }
+}

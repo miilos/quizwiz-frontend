@@ -135,7 +135,7 @@ function CreateQuiz() {
       options: question.answers,
       correctAnswers: [question.correctAnswer],
       type: 'one',
-      explanation: ''
+      explanation: question.explanation ?? ''
     }])
 
     setIsGenerateModalOpen(false)

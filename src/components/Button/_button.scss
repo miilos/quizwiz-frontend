@@ -27,4 +27,14 @@
       color: $color-primary--dark;
     }
   }
+
+  &--logout {
+    background-color: $color-error--light;
+    color: $color-error--dark;
+
+    &:hover {
+      background-color: $color-error--light;
+      color: $color-error--dark;
+    }
+  }
 }
