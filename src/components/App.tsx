@@ -9,6 +9,7 @@ import Login from "./Login/Login"
 import Signup from "./Signup/Signup"
 import RequireAuth from "./RequireAuth/RequireAuth"
 import CreateQuiz from "./CreateQuiz/CreateQuiz"
+import EditQuiz from "./EditQuiz/EditQuiz"
 import Profile from "./Profile/Profile"
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path=":id" element={<QuizDetails />} />
           <Route element={<RequireAuth />}>
             <Route path="create" element={<CreateQuiz />} />
+            <Route path=":id/edit" element={<EditQuiz />} />
           </Route>
         </Route>
 

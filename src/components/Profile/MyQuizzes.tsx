@@ -79,7 +79,6 @@ function MyQuizzes({ quizzes: initialQuizzes }: MyQuizzesProps) {
           <div
             key={quiz.id}
             className="quiz my-quizzes__quiz"
-            onClick={() => navigate(`/quizzes/${quiz.id}`)}
           >
             <div className="quiz__main-info">
               <h3 className="quiz__main-info__title">{quiz.title}</h3>

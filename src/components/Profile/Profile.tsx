@@ -38,6 +38,10 @@ function Profile() {
     fetchUser()
   }, [])
 
+  const handleProfileUpdate = (newUsername: string) => {
+    setUserData((prev) => prev ? { ...prev, username: newUsername } : prev)
+  }
+
   const handleLogout = () => {
     localStorage.removeItem('token')
     dispatch(clearUser())
@@ -75,7 +79,11 @@ function Profile() {
 
       <main className="profile-page__content">
         {activeTab === 'profile' && (
-          <MyProfile userData={userData} onLogout={handleLogout} />
+          <MyProfile
+            userData={userData}
+            onLogout={handleLogout}
+            onProfileUpdate={handleProfileUpdate}
+          />
         )}
         {activeTab === 'learning' && (
           <MyLearning attempts={userData.quizAttempts} />
