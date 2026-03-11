@@ -44,6 +44,23 @@
           outline: none;
         }
       }
+
+      &__forgot {
+        font-size: 1.2rem;
+        color: $color-secondary--light;
+        opacity: 0.7;
+        align-self: flex-end;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    &__hint {
+      font-size: 1.4rem;
+      opacity: 0.8;
+      margin: 0;
     }
 
     &__btn {

@@ -13,6 +13,8 @@ import CreateQuiz from "./CreateQuiz/CreateQuiz"
 import EditQuiz from "./EditQuiz/EditQuiz"
 import Profile from "./Profile/Profile"
 import AttemptPage from "./AttemptPage/AttemptPage"
+import ForgotPassword from "./ForgotPassword/ForgotPassword"
+import ResetPassword from "./ResetPassword/ResetPassword"
 import { useAppDispatch } from "../app/hooks"
 import { setUser } from "../features/userSlice"
 import { BACKEND_BASE_URI } from "../config"
@@ -45,6 +47,8 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
         </Route>
 
         <Route path="/quizzes" element={<Layout />}>

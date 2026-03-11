@@ -1,11 +1,11 @@
 import { useState } from "react"
-import Button from "../Button/Button"
-import { BACKEND_BASE_URI } from "../../config"
+import { Link, useNavigate } from "react-router"
 import { Spinner } from "react-bootstrap"
-import { useNavigate } from "react-router"
+import Button from "../Button/Button"
+import FormError from "../FormError/FormError"
+import { BACKEND_BASE_URI } from "../../config"
 import { useAppDispatch } from "../../app/hooks"
 import { setUser } from "../../features/userSlice"
-import FormError from "../FormError/FormError"
 
 function Login() {
   const [email, setEmail] = useState('')
@@ -94,6 +94,7 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleLogIn()}
             />
+            <Link to="/forgot-password" className="form__fields__group__forgot">Forgot password?</Link>
           </div>
 
           <Button

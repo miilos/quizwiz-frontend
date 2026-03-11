@@ -85,9 +85,6 @@ function MyProfile({ userData, onLogout, onProfileUpdate }: MyProfileProps) {
           <Button variant="primary" onClick={handleUpdateProfile}>
             Update profile
           </Button>
-          <Button variant="primary" onClick={() => {}}>
-            Reset password
-          </Button>
           <Button variant="logout" onClick={onLogout}>
             <FiLogOut />
             Log out
