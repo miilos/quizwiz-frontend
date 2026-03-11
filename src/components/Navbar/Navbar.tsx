@@ -35,8 +35,7 @@ function Navigation() {
             <Nav className="nav__items">
               <Nav.Link href="/quizzes" className="nav__item">Browse Quizzes</Nav.Link>
               <Nav.Link href="/quizzes/create" className="nav__item">Create a Quiz</Nav.Link>
-              <Nav.Link href="/" className="nav__item">Item 3</Nav.Link>
-              <Nav.Link href="/" className="nav__item">Item 4</Nav.Link>
+              <Nav.Link href="/profile?tab=learning" className="nav__item">My Learning</Nav.Link>
             </Nav>
           </Navbar.Collapse>
 

@@ -6,9 +6,10 @@ import { BsCheckLg } from "react-icons/bs";
 interface QuizResultProps {
   result: QuizAttempt;
   quiz: QuizDetails;
+  showBackButton?: boolean;
 }
 
-function QuizResults({ result, quiz }: QuizResultProps) {
+function QuizResults({ result, quiz, showBackButton = true }: QuizResultProps) {
   const mapPercentageScoreToMessage = (percentageScore: number): string => {
     switch (true) {
       case percentageScore <= 10:
@@ -27,7 +28,7 @@ function QuizResults({ result, quiz }: QuizResultProps) {
   }
 
   const answersByQuestionId = new Map(
-    result.answers.map(a => [a.questionId, a])
+    result.answers.map(a => [Number(a.questionId), a])
   )
 
   return (
@@ -52,18 +53,20 @@ function QuizResults({ result, quiz }: QuizResultProps) {
           </p>
         </div>
 
-        <Link to={'/quizzes'}>
-          <Button variant="secondary">
-            Back to quizzes
-          </Button>
-        </Link>
+        {showBackButton && (
+          <Link to={'/quizzes'}>
+            <Button variant="secondary">
+              Back to quizzes
+            </Button>
+          </Link>
+        )}
       </div>
 
       <div className="results-review">
         {quiz.questions.map((question) => {
           const answer = answersByQuestionId.get(question.id)
           const isCorrect = answer?.status === 'correct'
-          const userAnswers = (answer?.answers ?? []) as number[]
+          const userAnswers = (answer?.answers ?? []).map(Number)
 
           return (
             <div

@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { Route, Routes } from "react-router"
 import Home from "./Home/Home"
 import Navigation from "./Navbar/Navbar"
@@ -11,8 +12,30 @@ import RequireAuth from "./RequireAuth/RequireAuth"
 import CreateQuiz from "./CreateQuiz/CreateQuiz"
 import EditQuiz from "./EditQuiz/EditQuiz"
 import Profile from "./Profile/Profile"
+import AttemptPage from "./AttemptPage/AttemptPage"
+import { useAppDispatch } from "../app/hooks"
+import { setUser } from "../features/userSlice"
+import { BACKEND_BASE_URI } from "../config"
 
 function App() {
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    
+    if (!token) return
+
+    const hydrate = async () => {
+      const res = await fetch(BACKEND_BASE_URI + '/api/me', {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      const json = await res.json()
+      dispatch(setUser(json.data.user))
+    }
+
+    hydrate()
+  }, [])
+
   return (
     <>
       <Navigation />
@@ -35,6 +58,7 @@ function App() {
 
         <Route element={<RequireAuth />}>
           <Route path="/profile" element={<Profile />} />
+          <Route path="/attempts/:id" element={<AttemptPage />} />
         </Route>
       </Routes>
       <Footer />

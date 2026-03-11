@@ -82,6 +82,7 @@ interface ProfileQuizAnswer {
 
 export interface ProfileQuizAttempt {
   id: number;
+  quiz: { id: number; title: string };
   answers: ProfileQuizAnswer[];
   attemptedAt: string;
   correctAnswerCount: number;

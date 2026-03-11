@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useNavigate } from "react-router"
+import { useNavigate, useSearchParams } from "react-router"
 import { Spinner } from "react-bootstrap"
 import { BACKEND_BASE_URI } from "../../config"
 import { useAppDispatch } from "../../app/hooks"
@@ -12,7 +12,8 @@ import MyQuizzes from "./MyQuizzes"
 type ProfileTab = 'profile' | 'learning' | 'quizzes'
 
 function Profile() {
-  const [activeTab, setActiveTab] = useState<ProfileTab>('profile')
+  const [searchParams, setSearchParams] = useSearchParams()
+  const activeTab = (searchParams.get('tab') as ProfileTab) ?? 'quizzes'
   const [userData, setUserData] = useState<ProfileUser | null>(null)
   const [isLoading, setIsLoading] = useState(true)
 
@@ -58,22 +59,22 @@ function Profile() {
     <div className="profile-page">
       <aside className="profile-page__sidebar">
         <button
-          className={`profile-page__sidebar__item${activeTab === 'profile' ? ' profile-page__sidebar__item--active' : ''}`}
-          onClick={() => setActiveTab('profile')}
+          className={`profile-page__sidebar__item${activeTab === 'quizzes' ? ' profile-page__sidebar__item--active' : ''}`}
+          onClick={() => setSearchParams({ tab: 'quizzes' })}
         >
-          My profile
+          My quizzes
         </button>
         <button
           className={`profile-page__sidebar__item${activeTab === 'learning' ? ' profile-page__sidebar__item--active' : ''}`}
-          onClick={() => setActiveTab('learning')}
+          onClick={() => setSearchParams({ tab: 'learning' })}
         >
           My learning
         </button>
         <button
-          className={`profile-page__sidebar__item${activeTab === 'quizzes' ? ' profile-page__sidebar__item--active' : ''}`}
-          onClick={() => setActiveTab('quizzes')}
+          className={`profile-page__sidebar__item${activeTab === 'profile' ? ' profile-page__sidebar__item--active' : ''}`}
+          onClick={() => setSearchParams({ tab: 'profile' })}
         >
-          My quizzes
+          My profile
         </button>
       </aside>
 
