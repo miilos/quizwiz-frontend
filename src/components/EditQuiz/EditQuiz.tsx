@@ -19,6 +19,7 @@ const GET_QUIZ = gql`
       id
       title
       description
+      furtherReading
       tags {
         id
         name
@@ -53,6 +54,7 @@ interface GetQuizResult {
     id: number
     title: string
     description: string | null
+    furtherReading: string | null
     tags: [
       {
         id: number;
@@ -79,6 +81,7 @@ function EditQuiz() {
 
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
+  const [furtherReading, setFurtherReading] = useState('')
   const [tags, setTags] = useState<TagDraft[]>([])
   const [questions, setQuestions] = useState<QuestionDraft[]>([])
   const [initialized, setInitialized] = useState(false)
@@ -108,6 +111,7 @@ function EditQuiz() {
       const quiz = data.quiz
       setTitle(quiz.title)
       setDescription(quiz.description ?? '')
+      setFurtherReading(quiz.furtherReading ?? '')
       setTags(
         (quiz.tags ?? []).map((t: any) => ({
           id: nextTagId(),
@@ -232,6 +236,7 @@ function EditQuiz() {
           quiz: {
             title,
             description,
+            furtherReading,
             tags: tags.filter(t => t.name.trim()).map(({ name }) => ({ name })),
             questions: questions.map((q) => ({
               id: q.id,
@@ -367,6 +372,20 @@ function EditQuiz() {
           <BsStars className="create-quiz__questions__generate-btn__icon" />
           Generate with AI
         </button>
+      </div>
+
+      <div className="create-quiz__further-reading">
+        <h2 className="create-quiz__further-reading__title">Further reading</h2>
+        <hr className="create-quiz__further-reading__divider" />
+        <p className="create-quiz__further-reading__description">
+          Add an explanation of this quiz or it's questions so the users understand and learn better. You can also add links for further reading so everybody can get the most out of your quiz :)
+        </p>
+        <textarea
+          className="create-quiz__further-reading__textarea"
+          placeholder="Enter further reading..."
+          value={furtherReading}
+          onChange={(e) => setFurtherReading(e.target.value)}
+        />
       </div>
 
       <Button

@@ -13,6 +13,9 @@ import CreateQuiz from "./CreateQuiz/CreateQuiz"
 import EditQuiz from "./EditQuiz/EditQuiz"
 import Profile from "./Profile/Profile"
 import AttemptPage from "./AttemptPage/AttemptPage"
+import Admin from "./Admin/Admin"
+import AdminEditUser from "./Admin/AdminEditUser"
+import AdminCreateUser from "./Admin/AdminCreateUser"
 import ForgotPassword from "./ForgotPassword/ForgotPassword"
 import ResetPassword from "./ResetPassword/ResetPassword"
 import { useAppDispatch } from "../app/hooks"
@@ -63,6 +66,9 @@ function App() {
         <Route element={<RequireAuth />}>
           <Route path="/profile" element={<Profile />} />
           <Route path="/attempts/:id" element={<AttemptPage />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/users/:id/edit" element={<AdminEditUser />} />
+          <Route path="/admin/users/create" element={<AdminCreateUser />} />
         </Route>
       </Routes>
       <Footer />

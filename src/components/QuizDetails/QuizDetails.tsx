@@ -28,6 +28,7 @@ const GET_QUIZ = gql`
       id
       title
       description
+      furtherReading
       createdAt
       tags {
         id
@@ -192,8 +193,20 @@ function QuizDetails() {
 
       {
         attemptState === 'finished' &&
-        createAttemptData &&
-          <QuizResults result={createAttemptData.createAttempt} quiz={quiz} />
+        createAttemptData && (
+          <>
+            <QuizResults result={createAttemptData.createAttempt} quiz={quiz} />
+            {quiz.furtherReading && (
+              <div className="create-quiz__further-reading">
+                <h2 className="create-quiz__further-reading__title">Further reading</h2>
+                <hr className="create-quiz__further-reading__divider" />
+                <p className="create-quiz__further-reading__textarea create-quiz__further-reading__textarea--readonly">
+                  {quiz.furtherReading}
+                </p>
+              </div>
+            )}
+          </>
+        )
       }
 
       {

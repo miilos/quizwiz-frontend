@@ -1,0 +1,182 @@
+.admin-page {
+  display: flex;
+  min-height: calc(100vh - 8rem);
+  background-color: $color-secondary--light;
+
+  &--standalone {
+    min-height: calc(100vh - 8rem);
+  }
+
+  &__sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding-top: 3rem;
+    flex-shrink: 0;
+  }
+
+  &__sidebar__item {
+    background-color: $color-primary--dark;
+    color: $color-secondary--light;
+    padding: 1rem 2rem 1rem 1.6rem;
+    border: none;
+    text-align: left;
+    font-family: $font--primary;
+    font-size: 1.4rem;
+    cursor: pointer;
+    border-radius: 0 2rem 2rem 0;
+    transition: background-color 0.15s ease;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: $color-primary--medium;
+    }
+
+    &--active {
+      background-color: $color-primary--medium;
+    }
+  }
+
+  &__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5rem 2rem;
+  }
+}
+
+.admin-users {
+  width: 100%;
+  max-width: 60rem;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid $color-primary--dark;
+  }
+
+  &__title {
+    font-style: italic;
+    color: $color-primary--dark;
+    font-weight: bold;
+    font-size: 3.5rem;
+    margin: 0;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  &__card {
+    background: $bg-noise;
+    background-size: cover;
+    border-radius: 2.5rem;
+    padding: 2.2rem 2rem;
+    padding-right: 6rem;
+    color: $color-secondary--light;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    &__username {
+      font-size: 2.2rem;
+      font-weight: bold;
+      font-style: italic;
+      margin: 0;
+    }
+
+    &__email {
+      font-size: 1.4rem;
+      opacity: 0.7;
+      margin: 0;
+    }
+
+    &__stats {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 1.3rem;
+      margin-top: 0.4rem;
+      opacity: 0.8;
+    }
+  }
+}
+
+.admin-quizzes {
+  width: 100%;
+  max-width: 60rem;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid $color-primary--dark;
+  }
+
+  &__title {
+    font-style: italic;
+    color: $color-primary--dark;
+    font-weight: bold;
+    font-size: 3.5rem;
+    margin: 0;
+  }
+
+  &__empty {
+    color: $color-primary--dark;
+    font-style: italic;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  &__quiz {
+    padding-right: 5rem;
+  }
+}
+
+.admin-edit-user {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  width: 32rem;
+
+  &__username {
+    font-style: italic;
+    color: $color-primary--dark;
+    font-size: 2.4rem;
+    margin: 0;
+  }
+
+  &__fields {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  &__label {
+    color: $color-primary--dark !important;
+  }
+
+  &__input {
+    color: $color-primary--dark !important;
+    border-bottom-color: $color-primary--dark !important;
+    width: 100%;
+
+    &[readonly] {
+      opacity: 0.5;
+      cursor: default;
+    }
+  }
+}

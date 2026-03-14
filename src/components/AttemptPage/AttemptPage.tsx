@@ -15,6 +15,7 @@ const GET_ATTEMPT = gql`
         id
         title
         description
+        furtherReading
         createdAt
         tags {
           id
@@ -101,6 +102,16 @@ function AttemptPage() {
         quiz={quiz}
         showBackButton={false}
       />
+
+      {quiz.furtherReading && (
+        <div className="create-quiz__further-reading">
+          <h2 className="create-quiz__further-reading__title">Further reading</h2>
+          <hr className="create-quiz__further-reading__divider" />
+          <p className="create-quiz__further-reading__textarea create-quiz__further-reading__textarea--readonly">
+            {quiz.furtherReading}
+          </p>
+        </div>
+      )}
     </div>
   )
 }

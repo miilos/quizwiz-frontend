@@ -151,6 +151,7 @@ function CreateQuiz() {
             title,
             description,
             tags: tags.filter(t => t.name.trim()).map(({ name }) => ({ name })),
+            furtherReading,
             questions: questions.map((q) => ({
               text: q.text,
               options: q.options,
@@ -158,7 +159,6 @@ function CreateQuiz() {
               type: q.type,
               ...(q.explanation ? { explanation: q.explanation } : {})
             }))
-            // furtherReading will be included once the backend supports it
           }
         }
       })

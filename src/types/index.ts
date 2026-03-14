@@ -26,6 +26,7 @@ export interface QuizOverview {
   id: number;
   title: string;
   description?: string;
+  furtherReading?: string;
   createdAt: Date
   questions: [QuestionBase]
   tags?: [Tag]
@@ -97,6 +98,15 @@ export interface ProfileQuiz {
   createdAt: string;
   questions: { id: number }[];
   tags: any[][];
+}
+
+export interface AdminUser {
+  id: number;
+  username: string;
+  email: string;
+  roles: string[];
+  quizzes: { id: number }[];
+  quizAttempts: { id: number }[];
 }
 
 export interface ProfileUser {
