@@ -18,6 +18,7 @@ import AdminEditUser from "./Admin/AdminEditUser"
 import AdminCreateUser from "./Admin/AdminCreateUser"
 import ForgotPassword from "./ForgotPassword/ForgotPassword"
 import ResetPassword from "./ResetPassword/ResetPassword"
+import TagQuizList from "./TagQuizList/TagQuizList"
 import { useAppDispatch } from "../app/hooks"
 import { setUser } from "../features/userSlice"
 import { BACKEND_BASE_URI } from "../config"
@@ -52,6 +53,7 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/tag/:id" element={<TagQuizList />} />
         </Route>
 
         <Route path="/quizzes" element={<Layout />}>

@@ -292,7 +292,7 @@ function CreateQuiz() {
         <h2 className="create-quiz__further-reading__title">Further reading</h2>
         <hr className="create-quiz__further-reading__divider" />
         <p className="create-quiz__further-reading__description">
-          Add an explanation of this quiz or it's questions so the users understand and learn better. You can also add links for further reading so everybody can get the most out of your quiz :)
+          Add an explanation of this quiz or its questions so the users understand and learn better. You can also add links for further reading so everybody can get the most out of your quiz :)
         </p>
         <textarea
           className="create-quiz__further-reading__textarea"

@@ -1,1 +1,1 @@
-export const BACKEND_BASE_URI = 'http://127.0.0.1:38001'
+export const BACKEND_BASE_URI = 'https://ef.stud.vts.su.ac.rs'
